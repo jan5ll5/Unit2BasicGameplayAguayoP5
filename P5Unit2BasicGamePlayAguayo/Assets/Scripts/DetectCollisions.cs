@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
-    public Transform projectileSpawnPoint;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +14,7 @@ public class DetectCollisions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Instantiate(projectilePrefab, projectileSpawnPoint, projectilePrefab.transform.rotation);  
+       
     }
 
     private void OnTriggerEnter(Collider other)
