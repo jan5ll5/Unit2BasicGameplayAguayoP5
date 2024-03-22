@@ -5,10 +5,15 @@ using UnityEngine;
 public class PlayerControl2 : MonoBehaviour
 {
     public float horizontalInput;
-    public float verticalInput;
     public float speed = 10.0f;
     public float xRange;
+    public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
+    public float zMin;
+    public float zMax;
+    public float verticalInput;
+
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +25,7 @@ public class PlayerControl2 : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+
         verticalInput = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
         // Keep the player in bounds
@@ -31,10 +37,19 @@ public class PlayerControl2 : MonoBehaviour
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
+       if(transform.position.z < zMin)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zMin);
+        }
+       if(transform.position.z > zMax)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zMax);
+        }
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Launch a projectile from the player
-            Instantiate(projectilePrefab, projectileSpawnPoint, projectilePrefab.transform.rotation);
+            Instantiate(projectilePrefab, projectileSpawnPoint.position, projectilePrefab.transform.rotation);
         }
     }
 }
