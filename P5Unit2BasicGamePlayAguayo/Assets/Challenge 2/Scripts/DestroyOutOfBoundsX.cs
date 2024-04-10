@@ -14,11 +14,13 @@ public class DestroyOutOfBoundsX : MonoBehaviour
         if (transform.position.x < -leftLimit)
         {
             Destroy(gameObject);
+            Debug.Log("dog leftLimit is being called");
         } 
         // Destroy balls if y position is less than bottomLimit
         else if (transform.position.z < bottomLimit)
         {
             Destroy(gameObject);
+            Debug.Log("ball bottomLimit is being called");
         }
 
     }
